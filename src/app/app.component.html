@@ -8,7 +8,7 @@
     <!-- Sidebar - Brand -->
     <a
       class="sidebar-brand d-flex align-items-center justify-content-center"
-      href="index.html"
+      routerLink="/"
     >
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
@@ -20,10 +20,24 @@
     <hr class="sidebar-divider my-0" />
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/dashboard">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a
+      >
+    </li>
+
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/page1">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Page 1</span></a
+      >
+    </li>
+
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/page2">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Page 2</span></a
       >
     </li>
 
@@ -83,12 +97,12 @@
       >
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Custom Utilities:</h6>
-          <a class="collapse-item" href="utilities-color.html">Colors</a>
-          <a class="collapse-item" href="utilities-border.html">Borders</a>
-          <a class="collapse-item" href="utilities-animation.html"
+          <a class="collapse-item" routerLink="/utilities/colors">Colors</a>
+          <a class="collapse-item" routerLink="/utilities/border">Borders</a>
+          <a class="collapse-item" routerLink="/utilities/animation"
             >Animations</a
           >
-          <a class="collapse-item" href="utilities-other.html">Other</a>
+          <a class="collapse-item" routerLink="/utilities/other">Other</a>
         </div>
       </div>
     </li>

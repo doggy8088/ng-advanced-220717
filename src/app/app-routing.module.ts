@@ -1,13 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
+import { ColorsComponent } from './utilities/colors/colors.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'page1', component: Page1Component },
-  { path: 'page2', component: Page2Component },
+  { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
+  { path: 'dashboard', component: DashboardComponent, title: 'SB Admin 2 - Dashboard' },
+  { path: 'page1', component: Page1Component, title: 'SB Admin 2 - Page 1' },
+  { path: 'page2', component: Page2Component, title: 'SB Admin 2 - Page 2' },
+  {
+    path: 'utilities',
+    children: [
+      { path: 'colors', component: ColorsComponent }
+    ]
+  },
+  // { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
