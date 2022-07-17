@@ -21,7 +21,7 @@ const routes: Routes = [
       {
         path: 'utilities',
         children: [
-          { path: 'colors/:type', component: ColorsComponent },
+          { path: 'colors/:type', component: ColorsComponent, data: { key: 'value' } },
         ]
       }
     ]
