@@ -13,11 +13,12 @@ export class FormDirtyGuard implements CanDeactivate<LoginComponent> {
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      if (component.form.dirty) {
-        return false;
-      } else {
-        return true;
-      }
+      // if (component.form.dirty) {
+      //   return false;
+      // } else {
+      //   return true;
+      // }
+      return true;
   }
 
 }

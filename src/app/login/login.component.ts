@@ -26,6 +26,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     localStorage.setItem('apikey', 'TEST');
     var url = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     this.router.navigateByUrl(url);
+
+    this.router.navigate(['/'], {
+      state: {
+
+      }
+    })
   }
 
 }
