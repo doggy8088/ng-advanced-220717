@@ -1,5 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   templateUrl: './login.component.html',
@@ -8,6 +9,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit, OnDestroy {
 
   orig_body_className = document.body.className;
+
+  form!: FormGroup;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
