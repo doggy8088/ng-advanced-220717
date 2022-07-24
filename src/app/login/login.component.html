@@ -95,7 +95,8 @@ mTab1.errors = {{ mTab1.errors | json }}</pre>
                       [(ngModel)]="data.tab1.addr"
                       name="addr"
                       #mAddr="ngModel"
-                      required twid
+                      required twid-async
+                      [ngModelOptions]="{updateOn: 'blur'}"
                     />
 <pre>mAddr.errors = {{ mAddr.errors | json }}</pre>
                   </div>

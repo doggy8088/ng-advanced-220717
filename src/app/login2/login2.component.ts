@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TwidAsyncValidatorDirective } from '../twid-async-validator.directive';
 import { TwidValidatorDirective } from '../twid-validator.directive';
 import { forbiddenPassword } from './forbiddenPassword';
 
@@ -67,7 +68,9 @@ export class Login2Component implements OnInit {
     return this.fb.group({
       city: this.fb.control(city, { validators: [Validators.required] }),
       tel: this.fb.control(tel, {
-        validators: [Validators.required, this.twid.validate],
+        validators: [Validators.required /*, this.twid.validate */],
+        asyncValidators: [ this.twid.validate ],
+        updateOn: 'blur'
       }),
     });
   }
@@ -76,7 +79,7 @@ export class Login2Component implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private twid: TwidValidatorDirective
+    private twid: TwidAsyncValidatorDirective
   ) {}
   ngOnInit(): void {
     document.body.className = 'bg-gradient-primary';
