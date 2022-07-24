@@ -91,12 +91,13 @@ mTab1.errors = {{ mTab1.errors | json }}</pre>
                       class="form-control form-control-user"
                       [class.is-invalid]="isInvalid(mEmail, form)"
                       [class.is-valid]="isValid(mEmail)"
-                      placeholder="Enter Address..."
+                      placeholder="請輸入身份證字號"
                       [(ngModel)]="data.tab1.addr"
                       name="addr"
                       #mAddr="ngModel"
-                      required
+                      required twid
                     />
+<pre>mAddr.errors = {{ mAddr.errors | json }}</pre>
                   </div>
                   <div class="form-group">
                     <input

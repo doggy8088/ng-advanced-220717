@@ -10,6 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TwidValidatorDirective } from '../twid-validator.directive';
 import { forbiddenPassword } from './forbiddenPassword';
 
 @Component({
@@ -19,7 +20,7 @@ import { forbiddenPassword } from './forbiddenPassword';
 export class Login2Component implements OnInit {
   data = {
     email: 'user@example.com',
-    password: '123123',
+    password: 'adfjalsdjflasdf',
     isRememberMe: true,
     profiles: [
       {
@@ -62,30 +63,31 @@ export class Login2Component implements OnInit {
   });
 
   makeProfile(city: string, tel: string) {
+    console.log(this.twid.validate);
     return this.fb.group({
       city: this.fb.control(city, { validators: [Validators.required] }),
-      tel: this.fb.control(tel, { validators: [Validators.required] }),
+      tel: this.fb.control(tel, { validators: [Validators.required, this.twid.validate] }),
     });
   }
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private twid: TwidValidatorDirective
   ) {}
 
   ngOnInit(): void {
     document.body.className = 'bg-gradient-primary';
 
     setTimeout(() => {
-
       this.form.controls.profiles.clear();
       this.data.profiles.forEach(profile => {
         this.form.controls.profiles.push(this.makeProfile(profile.city, profile.tel));
       });
       this.form.setValue(this.data);
       // this.form.patchValue(this.data);
-    }, 2000);
+    }, 0);
   }
 
   ngOnDestroy(): void {
