@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
-  FormGroupDirective,
-  NgForm,
-  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,48 +22,53 @@ export class Login2Component implements OnInit {
     profiles: [
       {
         city: 'Taipei',
-        tel: '0988-888888',
+        tel: 'A123456789',
       },
       {
         city: '台中',
-        tel: '0944-444444',
+        tel: 'A123456789',
       },
       {
         city: 'Kaoshuang',
-        tel: '0911111111',
+        tel: 'A123456789',
       },
     ],
   };
 
   orig_body_className = document.body.className;
 
-  form = this.fb.group({
-    email: this.fb.nonNullable.control('', {
-      validators: [Validators.required, Validators.email],
-      updateOn: 'blur',
-    }),
-    password: this.fb.control('', {
-      validators: [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(32),
-        forbiddenPassword
-      ],
-    }),
-    isRememberMe: this.fb.control(true, {}),
-    profiles: this.fb.array([
-      this.makeProfile('Taipei', '0988-888888'),
-      this.makeProfile('台中', '0944-444444'),
-    ]),
-  }, {
-    validators: []
-  });
+  form = this.fb.group(
+    {
+      email: this.fb.nonNullable.control('', {
+        validators: [Validators.required, Validators.email],
+        updateOn: 'blur',
+      }),
+      password: this.fb.control('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(32),
+          forbiddenPassword,
+        ],
+        asyncValidators: [],
+      }),
+      isRememberMe: this.fb.control(true, {}),
+      profiles: this.fb.array([
+        this.makeProfile('Taipei', 'A123456789'),
+        this.makeProfile('台中', 'A123456789'),
+      ]),
+    },
+    {
+      validators: [],
+    }
+  );
 
   makeProfile(city: string, tel: string) {
-    console.log(this.twid.validate);
     return this.fb.group({
       city: this.fb.control(city, { validators: [Validators.required] }),
-      tel: this.fb.control(tel, { validators: [Validators.required, this.twid.validate] }),
+      tel: this.fb.control(tel, {
+        validators: [Validators.required, this.twid.validate],
+      }),
     });
   }
 
@@ -76,18 +78,28 @@ export class Login2Component implements OnInit {
     private fb: FormBuilder,
     private twid: TwidValidatorDirective
   ) {}
-
   ngOnInit(): void {
     document.body.className = 'bg-gradient-primary';
 
     setTimeout(() => {
+      this.checkValidity(this.form);
+
       this.form.controls.profiles.clear();
-      this.data.profiles.forEach(profile => {
-        this.form.controls.profiles.push(this.makeProfile(profile.city, profile.tel));
+      this.data.profiles.forEach((profile) => {
+        this.form.controls.profiles.push(
+          this.makeProfile(profile.city, profile.tel)
+        );
       });
-      this.form.setValue(this.data);
-      // this.form.patchValue(this.data);
-    }, 0);
+      this.form.setValue(this.data, { emitEvent: false });
+    }, 2000);
+  }
+
+  checkValidity(g: FormGroup) {
+    Object.keys(g.controls).forEach((key) => {
+      g.get(key)?.markAsDirty();
+      g.get(key)?.markAsTouched();
+      g.get(key)?.updateValueAndValidity();
+    });
   }
 
   ngOnDestroy(): void {
