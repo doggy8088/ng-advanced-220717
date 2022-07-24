@@ -11,6 +11,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Login2Component } from './login2/login2.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     NotFoundComponent,
     LayoutComponent,
-    LoginComponent
+    LoginComponent,
+    Login2Component
   ],
   imports: [
     BrowserModule,
