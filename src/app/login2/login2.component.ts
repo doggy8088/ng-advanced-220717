@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -10,6 +11,17 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
+function forbiddenPassword(control: AbstractControl) {
+  if (!control.value) { return null; }
+  let words = ['will', 'duotify', '123'];
+  var result = words.includes(control.value);
+  if (result) {
+    return { forbiddenPassword: true };
+  } else {
+    return null;
+  }
+}
 
 @Component({
   templateUrl: './login2.component.html',
@@ -48,6 +60,7 @@ export class Login2Component implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(32),
+        forbiddenPassword
       ],
     }),
     isRememberMe: this.fb.control(true, {}),
@@ -55,6 +68,8 @@ export class Login2Component implements OnInit {
       this.makeProfile('Taipei', '0988-888888'),
       this.makeProfile('台中', '0944-444444'),
     ]),
+  }, {
+    validators: []
   });
 
   makeProfile(city: string, tel: string) {
