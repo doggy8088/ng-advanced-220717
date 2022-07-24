@@ -17,8 +17,8 @@
                     <input
                       type="email"
                       class="form-control form-control-user"
-                      [class.is-invalid]="mEmail.invalid"
-                      [class.is-valid]="mEmail.valid"
+                      [class.is-invalid]="isInvalid(mEmail)"
+                      [class.is-valid]="isValid(mEmail)"
                       id="exampleInputEmail"
                       aria-describedby="emailHelp"
                       placeholder="Enter Email Address..."
@@ -27,8 +27,8 @@
                       #mEmail="ngModel"
                       required email
                     />
-                    <p class="invalid-feedback" *ngIf="mEmail.invalid && mEmail.errors?.['required']">請輸入 Email 地址 (帳號)</p>
-                    <p class="invalid-feedback" *ngIf="mEmail.invalid && mEmail.errors?.['email']">請輸入合法的 Email 地址</p>
+                    <p class="invalid-feedback" *ngIf="isInvalid(mEmail) && mEmail.errors?.['required']">請輸入 Email 地址 (帳號)</p>
+                    <p class="invalid-feedback" *ngIf="isInvalid(mEmail) && mEmail.errors?.['email']">請輸入合法的 Email 地址</p>
 <pre>mEmail.name = {{ mEmail.name }}
 mEmail.value = {{ mEmail.value }}
 mEmail.valid = {{ mEmail.valid }}
@@ -39,6 +39,7 @@ mEmail.pristine = {{ mEmail.pristine }}
 mEmail.dirty = {{ mEmail.dirty }}
 mEmail.enabled = {{ mEmail.enabled }}
 mEmail.disabled = {{ mEmail.disabled }}
+mEmail.status = {{ mEmail.status }}
 mEmail.errors = {{ mEmail.errors | json }}</pre>
                   </div>
                   <div class="form-group">
@@ -51,6 +52,8 @@ mEmail.errors = {{ mEmail.errors | json }}</pre>
                       name="password"
                       #mPassword="ngModel"
                       required
+                      [class.is-invalid]="isInvalid(mPassword)"
+                      [class.is-valid]="isValid(mPassword)"
                     />
                   </div>
                   <div class="form-group">

@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, NgModel } from '@angular/forms';
 
 @Component({
   templateUrl: './login.component.html',
@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   data: any = {
     email: '',
-    password: '123',
+    password: '',
     isRememberMe: true
   }
 
@@ -38,6 +38,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       }
     })
+  }
+
+  isInvalid(control: NgModel) {
+    return control.invalid && control.touched;
+  }
+
+  isValid(control: NgModel) {
+    return control.valid;
   }
 
 }
