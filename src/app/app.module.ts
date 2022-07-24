@@ -10,6 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
