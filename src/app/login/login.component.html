@@ -25,7 +25,7 @@
                       [(ngModel)]="data.email"
                       name="email"
                       #mEmail="ngModel"
-                      required email
+                      required email minlength="5"
                     />
                     <p class="invalid-feedback" *ngIf="isInvalid(mEmail) && mEmail.errors?.['required']">請輸入 Email 地址 (帳號)</p>
                     <p class="invalid-feedback" *ngIf="isInvalid(mEmail) && mEmail.errors?.['email']">請輸入合法的 Email 地址</p>
@@ -51,7 +51,7 @@ mEmail.errors = {{ mEmail.errors | json }}</pre>
                       [(ngModel)]="data.password"
                       name="password"
                       #mPassword="ngModel"
-                      required
+                      required minlength="6" maxlength="32"
                       [class.is-invalid]="isInvalid(mPassword)"
                       [class.is-valid]="isValid(mPassword)"
                     />
