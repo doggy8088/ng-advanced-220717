@@ -1,5 +1,5 @@
 import { Directive, Injectable, Injector } from '@angular/core';
-import { Validator, NG_VALIDATORS, FormControl } from '@angular/forms';
+import { Validator, NG_VALIDATORS, FormControl, ValidationErrors } from '@angular/forms';
 import {
   isGuiNumberValid, // 統一編號
   isNationalIdentificationNumberValid, // 身分證字號
@@ -18,7 +18,7 @@ import {
 })
 
 export class TwidValidatorDirective implements Validator {
-  validate(c: FormControl): { [key: string]: any } | null {
+  validate(c: FormControl): ValidationErrors | null {
     if (!c.value) { return null; }
 
     if (isNationalIdentificationNumberValid(c.value)) {
