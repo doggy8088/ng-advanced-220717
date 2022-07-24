@@ -108,8 +108,8 @@ export class Login2Component implements OnInit {
     this.form.controls.profiles.push(this.makeProfile('', ''));
   }
 
-  doLogin(form: FormGroupDirective) {
-    if (form.valid) {
+  doLogin() {
+    if (this.form.valid) {
       localStorage.setItem('apikey', 'TEST');
       var url = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
       this.router.navigateByUrl(url);
