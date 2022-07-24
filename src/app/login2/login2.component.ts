@@ -4,6 +4,8 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormGroupDirective,
+  NgForm,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
@@ -106,16 +108,16 @@ export class Login2Component implements OnInit {
     this.form.controls.profiles.push(this.makeProfile('', ''));
   }
 
-  // doLogin(form: NgForm) {
-  //   if (form.valid) {
-  //     localStorage.setItem('apikey', 'TEST');
-  //     var url = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-  //     this.router.navigateByUrl(url);
-  //     this.router.navigate(['/'], {
-  //       state: {},
-  //     });
-  //   }
-  // }
+  doLogin(form: FormGroupDirective) {
+    if (form.valid) {
+      localStorage.setItem('apikey', 'TEST');
+      var url = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+      this.router.navigateByUrl(url);
+      this.router.navigate(['/'], {
+        state: {},
+      });
+    }
+  }
 
   // isInvalid(control: NgModel, form: NgForm) {
   //   return control.invalid && (control.touched || form.submitted);

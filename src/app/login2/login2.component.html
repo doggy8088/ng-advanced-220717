@@ -25,7 +25,7 @@ form.enabled = {{ form.enabled }}
 form.disabled = {{ form.disabled }}
 form.status = {{ form.status }}
 form.errors = {{ form.errors | json }}</pre>
-                <form class="user" [formGroup]="form">
+                <form class="user" [formGroup]="form" #mForm="ngForm" (ngSubmit)="doLogin(mForm)">
                   <div class="form-group">
                     <input
                       type="email"
@@ -107,12 +107,11 @@ fc('email').errors = {{ fc('email').errors | json }}</pre>
 
 
 
-                  <a
-                    href="index.html"
+                  <button type="submit"
                     class="btn btn-primary btn-user btn-block"
                   >
                     Login
-                  </a>
+                  </button>
                   <hr />
                   <button type="button" (click)="resetForm()"
                     class="btn btn-google btn-user btn-block"
