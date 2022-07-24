@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -11,17 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-function forbiddenPassword(control: AbstractControl) {
-  if (!control.value) { return null; }
-  let words = ['will', 'duotify', '123'];
-  var result = words.includes(control.value);
-  if (result) {
-    return { forbiddenPassword: true };
-  } else {
-    return null;
-  }
-}
+import { forbiddenPassword } from './forbiddenPassword';
 
 @Component({
   templateUrl: './login2.component.html',
