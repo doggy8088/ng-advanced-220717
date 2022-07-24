@@ -69,6 +69,42 @@ fc('email').errors = {{ fc('email').errors | json }}</pre>
                       >
                     </div>
                   </div>
+
+                  <hr>
+
+                  <h1>Profiles</h1>
+
+                  <ng-container formArrayName="profiles">
+
+                    <ng-container *ngFor="let profile of form.controls.profiles.controls; let i=index" [formGroupName]="i">
+
+                      <h2>{{i+1}}</h2>
+
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-user"
+                          placeholder="請輸入城市"
+                          formControlName="city"
+                        />
+                      </div>
+
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-user"
+                          placeholder="請輸入電話"
+                          formControlName="tel"
+                        />
+                      </div>
+
+                    </ng-container>
+
+                  </ng-container>
+
+
+
+
                   <a
                     href="index.html"
                     class="btn btn-primary btn-user btn-block"
