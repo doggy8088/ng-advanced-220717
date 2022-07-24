@@ -11,6 +11,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     email: '',
     password: '',
     isRememberMe: true,
+    tab1: {
+      addr: '',
+      zip: ''
+    }
   };
 
   orig_body_className = document.body.className;
@@ -44,5 +48,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   isValid(control: NgModel) {
     return control.valid;
+  }
+
+  disableField(control: NgModel) {
+    if (control.disabled) {
+      control.control.enable();
+    } else {
+      control.control.disable();
+    }
   }
 }

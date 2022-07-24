@@ -12,7 +12,8 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
-<pre>form.name = {{ form.name }}
+<pre>data = {{ data | json }}
+form.name = {{ form.name }}
 form.value = {{ form.value | json }}
 form.valid = {{ form.valid }}
 form.invalid = {{ form.invalid }}
@@ -54,7 +55,7 @@ mEmail.disabled = {{ mEmail.disabled }}
 mEmail.status = {{ mEmail.status }}
 mEmail.errors = {{ mEmail.errors | json }}</pre>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" (dblclick)="disableField(mPassword)">
                     <input
                       type="password"
                       class="form-control form-control-user"
@@ -68,6 +69,49 @@ mEmail.errors = {{ mEmail.errors | json }}</pre>
                       [class.is-valid]="isValid(mPassword)"
                     />
                   </div>
+
+
+                  <div ngModelGroup="tab1" #mTab1="ngModelGroup">
+
+<pre>mTab1.name = {{ mTab1.name }}
+mTab1.value = {{ mTab1.value | json }}
+mTab1.valid = {{ mTab1.valid }}
+mTab1.invalid = {{ mTab1.invalid }}
+mTab1.touched = {{ mTab1.touched }}
+mTab1.untouched = {{ mTab1.untouched }}
+mTab1.pristine = {{ mTab1.pristine }}
+mTab1.dirty = {{ mTab1.dirty }}
+mTab1.enabled = {{ mTab1.enabled }}
+mTab1.disabled = {{ mTab1.disabled }}
+mTab1.status = {{ mTab1.status }}
+mTab1.errors = {{ mTab1.errors | json }}</pre>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      [class.is-invalid]="isInvalid(mEmail, form)"
+                      [class.is-valid]="isValid(mEmail)"
+                      placeholder="Enter Address..."
+                      [(ngModel)]="data.tab1.addr"
+                      name="addr"
+                      #mAddr="ngModel"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      placeholder="請輸入郵遞區號"
+                      [(ngModel)]="data.tab1.zip"
+                      name="zip"
+                      #mZip="ngModel"
+                      required
+                    />
+                  </div>
+                  </div>
+
+
                   <div class="form-group">
                     <div class="custom-control custom-checkbox small">
                       <input
@@ -84,7 +128,7 @@ mEmail.errors = {{ mEmail.errors | json }}</pre>
                     </div>
                   </div>
                   <button
-                    type="submit"
+                    type="submit" [disabled]="form.invalid"
                     class="btn btn-primary btn-user btn-block"
                   >
                     Login
