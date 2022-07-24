@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,23 +8,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class Login2Component implements OnInit {
   data: any = {
-    email: '',
-    password: '',
-    isRememberMe: true,
-    tab1: {
-      addr: '',
-      zip: ''
-    }
+    email: 'user@example.com',
+    password: '123123',
+    isRememberMe: true
   };
 
   orig_body_className = document.body.className;
 
-  // form!: FormGroup;
+  form!: UntypedFormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     document.body.className = 'bg-gradient-primary';
+
+    this.form = this.fb.group(this.data);
   }
 
   ngOnDestroy(): void {
