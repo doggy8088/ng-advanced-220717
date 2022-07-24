@@ -22,6 +22,17 @@
                       placeholder="Enter Email Address..."
                       formControlName="email"
                     />
+<pre>form.controls.email.value = {{ form.controls.email.value }}
+form.controls.email.valid = {{ form.controls.email.valid }}
+form.controls.email.invalid = {{ form.controls.email.invalid }}
+form.controls.email.touched = {{ form.controls.email.touched }}
+form.controls.email.untouched = {{ form.controls.email.untouched }}
+form.controls.email.pristine = {{ form.controls.email.pristine }}
+form.controls.email.dirty = {{ form.controls.email.dirty }}
+form.controls.email.enabled = {{ form.controls.email.enabled }}
+form.controls.email.disabled = {{ form.controls.email.disabled }}
+form.controls.email.status = {{ form.controls.email.status }}
+form.controls.email.errors = {{ form.controls.email.errors | json }}</pre>
                   </div>
                   <div class="form-group">
                     <input
